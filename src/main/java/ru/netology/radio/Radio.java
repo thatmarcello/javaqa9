@@ -1,8 +1,18 @@
 package ru.netology.radio;
 
 public class Radio {
+    private int countStation;
     private int currentStation;
     private int currentVolume;
+
+    public Radio() {
+        this.countStation = 10;
+    }
+
+    public Radio(int countStation) {
+       this.countStation = countStation;
+    }
+
 
     //геттер станции
     public int getCurrentStation() {
@@ -10,16 +20,16 @@ public class Radio {
     }
 
     //сеттер станции
-    public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation > 9 || newCurrentStation < 0) {
+    public void setCurrentStation(int currentStation) {
+        if (currentStation > countStation - 1 || currentStation < 0) {
             return;
         }
-        currentStation = newCurrentStation;
+        this.currentStation = currentStation;
     }
 
     //переключение станции вперед
     public void nextStation() {
-        if (currentStation < 9) {
+        if (currentStation < countStation - 1) {
             currentStation = currentStation + 1;
         } else {
             currentStation = 0;
@@ -31,21 +41,22 @@ public class Radio {
         if (currentStation > 0) {
             currentStation = currentStation - 1;
         } else {
-            currentStation = 9;
+            currentStation = countStation - 1;
         }
     }
 
     //геттер громкости
     public int getCurrentVolume() {
+
         return currentVolume;
     }
 
     //сеттер громкости
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume > 10 || newCurrentVolume < 0) {
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > 100 || currentVolume < 0) {
             return;
         }
-        currentVolume = newCurrentVolume;
+        this.currentVolume = currentVolume;
     }
 
     //кнопка "-"
@@ -57,7 +68,7 @@ public class Radio {
 
     //кнопка "+"
     public void turnUpVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
         }
     }
